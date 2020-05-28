@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>SteamID Group ID converter</title>
+    <style>
+      body {}
+      table {height: 100%; width: 100%}
+      tr {text-align: center; font: 16px Tahoma}
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <table>
+        <tr>
+          <td>
+            <table>
+              <tr>
+                <td>
+                  <div>
+                    <span>Add <b>/memberslistxml/?xml=1</b> to Group URL</span><br/>
+                    Enter groupID64: <input v-model="gid" id="gid" type="text" placeholder="103582791466983744"/><br/>
+                    <b>cl_clanid {{ result }}</b>
+                  </div>
+                </td>
+                </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        gid: '103582791466983744'
+      },
+      computed: {
+        result: function() {
+          return (BigInt(this.gid) & BigInt(0xFFFFFFFF));
+        }
+      }
+    })
+  </script>
+</html>
